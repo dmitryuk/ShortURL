@@ -18,7 +18,7 @@
         public static function getUrlByShortURL($shortUrl){
             $id = self::shortURLtoID($shortUrl);
             if(!$id) return false;
-            $q = App::$mysqli->prepare("select url from urls where id=?");
+            $q = App::$mysqli->prepare("select url from urls where id=? limit 1");
             $q->bind_param('i',$id);
             $q->execute();
             $q->bind_result($url);
